@@ -1,0 +1,1231 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#4b76c5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Press Start 2P', cursive;
+    overflow:hidden;
+}
+
+/* ==========================================
+   PAGE
+========================================== */
+
+.page{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* ==========================================
+   GAME BOY
+========================================== */
+
+.gameboy{
+
+    position:relative;
+
+    width:390px;
+    max-width:95vw;
+
+    background:#ffd83d;
+
+    border-radius:30px 30px 90px 30px;
+
+    padding:24px;
+
+    box-shadow:
+        inset -8px -8px 0 rgba(0,0,0,.18),
+        inset 8px 8px 0 rgba(255,255,255,.30),
+        0 18px 40px rgba(0,0,0,.35);
+
+}
+
+/* ==========================================
+   POWER
+========================================== */
+
+.power-section{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#444;
+    font-size:8px;
+
+    margin-bottom:18px;
+
+}
+
+.power-led{
+
+    width:12px;
+    height:12px;
+
+    background:#ff0000;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 5px red,
+        0 0 12px red;
+
+    animation:powerFlash 1s infinite;
+
+}
+
+@keyframes powerFlash{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.25;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+/* ==========================================
+   SCREEN SHELL
+========================================== */
+
+.screen-shell{
+
+    background:#555;
+
+    padding:22px;
+
+    border-radius:18px 18px 55px 18px;
+
+    box-shadow:
+        inset 0 0 12px rgba(0,0,0,.55);
+
+}
+
+/* ==========================================
+   SCREEN
+========================================== */
+
+.screen{
+
+    position:relative;
+
+    width:100%;
+    aspect-ratio:1;
+
+    overflow:hidden;
+
+    background:#8bac0f;
+
+    border:6px solid #222;
+
+    border-radius:8px;
+
+}
+
+/* ==========================================
+   SCENES
+========================================== */
+
+.scene{
+
+    position:absolute;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+}
+
+.scene.active{
+
+    display:flex;
+
+}
+
+/* ==========================================
+   BOOT SCREEN
+========================================== */
+
+.boot-content{
+
+    text-align:center;
+
+    color:#143600;
+
+    padding:20px;
+
+}
+
+.boot-title{
+
+    font-size:22px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+
+}
+
+.boot-subtitle{
+
+    font-size:10px;
+
+    margin-bottom:26px;
+
+}
+
+.loading-box{
+
+    width:220px;
+    max-width:90%;
+
+    height:18px;
+
+    margin:auto;
+
+    border:3px solid #143600;
+
+    overflow:hidden;
+
+}
+
+.loading-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:#143600;
+
+}
+
+.loading-text{
+
+    margin-top:20px;
+
+    font-size:10px;
+
+    animation:blinkText .9s infinite;
+
+}
+
+@keyframes blinkText{
+
+    50%{
+        opacity:0;
+    }
+
+}
+
+/* ==========================================
+   LOADING SCENE
+========================================== */
+
+.loading-scene{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:22px;
+
+    color:#143600;
+
+    font-size:11px;
+
+}
+
+.spinner{
+
+    width:42px;
+    height:42px;
+
+    border:5px solid rgba(20,54,0,.2);
+
+    border-top:5px solid #143600;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+/* ==========================================
+   CONTROLS
+========================================== */
+
+.controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:34px;
+    padding:0 10px;
+}
+
+/* ==========================================
+   D-PAD
+========================================== */
+
+.dpad{
+    position:relative;
+    width:110px;
+    height:110px;
+}
+
+.dpad-vertical,
+.dpad-horizontal{
+    position:absolute;
+    background:#2d2d2d;
+    border-radius:8px;
+    box-shadow:
+        inset 3px 3px 0 rgba(255,255,255,.12),
+        inset -3px -3px 0 rgba(0,0,0,.35);
+}
+
+.dpad-vertical{
+    width:34px;
+    height:110px;
+    left:38px;
+    top:0;
+}
+
+.dpad-horizontal{
+    width:110px;
+    height:34px;
+    left:0;
+    top:38px;
+}
+
+/* ==========================================
+   A / B BUTTONS
+========================================== */
+
+.buttons{
+    display:flex;
+    gap:22px;
+    transform:rotate(-22deg);
+}
+
+.game-button{
+    width:62px;
+    height:62px;
+    border:none;
+    border-radius:50%;
+    background:#b3004b;
+    color:white;
+    font-family:'Press Start 2P', cursive;
+    font-size:18px;
+    cursor:pointer;
+
+    box-shadow:
+        inset 0 -5px 0 rgba(0,0,0,.30),
+        0 5px 10px rgba(0,0,0,.25);
+
+    transition:.12s;
+}
+
+.game-button:hover{
+    transform:scale(1.05);
+}
+
+.game-button:active,
+.game-button.pressed{
+    transform:translateY(3px) scale(.97);
+    box-shadow:
+        inset 0 4px 8px rgba(0,0,0,.35);
+}
+
+/* ==========================================
+   START / SELECT
+========================================== */
+
+.middle-buttons{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:30px;
+}
+
+.small-button{
+    width:48px;
+    height:12px;
+    background:#666;
+    border-radius:20px;
+
+    box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,.15),
+        inset -2px -2px 0 rgba(0,0,0,.35);
+}
+
+/* ==========================================
+   SPEAKER
+========================================== */
+
+.speaker{
+    width:85px;
+    margin:28px auto 0;
+    display:flex;
+    justify-content:space-between;
+    transform:rotate(-20deg);
+}
+
+.speaker span{
+    width:4px;
+    height:36px;
+    background:#777;
+    border-radius:5px;
+}
+
+/* ==========================================
+   BATTLE BACKGROUND
+========================================== */
+
+.battle-bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    image-rendering:pixelated;
+}
+
+/* ==========================================
+   SPRITES
+========================================== */
+
+.sprite{
+    position:absolute;
+    image-rendering:pixelated;
+    user-select:none;
+    pointer-events:none;
+}
+
+.partysaur{
+    width:120px;
+    left:35px;
+    bottom:70px;
+    animation:bounce 1s infinite;
+}
+
+.freyja{
+    width:92px;
+    right:-140px;
+    bottom:72px;
+}
+
+.partyball{
+    width:34px;
+    right:65px;
+    bottom:155px;
+    opacity:0;
+}
+
+.explosion{
+    width:120px;
+    left:55%;
+    top:42%;
+    transform:translate(-50%,-50%) scale(.2);
+    opacity:0;
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes bounce{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes walkIn{
+
+    from{
+        right:-140px;
+    }
+
+    to{
+        right:40px;
+    }
+
+}
+
+@keyframes throwBall{
+
+    0%{
+        opacity:1;
+        transform:translate(0,0) rotate(0deg);
+    }
+
+    100%{
+        opacity:1;
+        transform:translate(-165px,95px) rotate(720deg);
+    }
+
+}
+
+@keyframes explode{
+
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.2);
+    }
+
+    40%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.3);
+    }
+
+    100%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(2);
+    }
+
+}
+/* ==========================================
+   BATTLE TEXT BOX
+========================================== */
+
+.textbox{
+
+    position:absolute;
+
+    bottom:12px;
+    left:10px;
+    right:10px;
+
+    min-height:70px;
+
+    background:#f8f8f8;
+
+    border:4px solid #222;
+
+    border-radius:8px;
+
+    padding:12px;
+
+    color:#111;
+
+    font-size:9px;
+
+    line-height:1.8;
+
+    box-shadow:
+        inset 0 0 0 3px #999;
+
+}
+
+
+.textbox p{
+
+    animation:typeText 2s steps(30);
+
+}
+
+
+@keyframes typeText{
+
+    from{
+        width:0;
+        overflow:hidden;
+    }
+
+    to{
+        width:100%;
+        overflow:hidden;
+    }
+
+}
+
+
+
+/* ==========================================
+   EVOLUTION SCREEN
+========================================== */
+
+
+.evolution-wrapper{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:#8bac0f;
+
+}
+
+
+.evolved-text{
+
+    text-align:center;
+
+    color:#143600;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    animation:evolutionFlash 1s infinite;
+
+}
+
+
+@keyframes evolutionFlash{
+
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.3;
+        transform:scale(1.08);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+
+/* ==========================================
+   INVITATION SCREEN
+========================================== */
+
+
+.invite-card{
+
+    width:90%;
+
+    height:90%;
+
+    background:#f7f7f7;
+
+    border:5px solid #222;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    text-align:center;
+
+    color:#143600;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:
+
+        inset 0 0 0 4px #8bac0f;
+
+}
+
+
+.invite-card h1{
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+
+.invite-info{
+
+    font-size:10px;
+
+    line-height:2.5;
+
+}
+
+
+
+/* ==========================================
+   RSVP BUTTON
+========================================== */
+
+
+.rsvp-button{
+
+    margin:25px auto 0;
+
+    width:140px;
+
+    padding:14px 8px;
+
+    border:none;
+
+    background:#b3004b;
+
+    color:white;
+
+    border-radius:8px;
+
+    font-family:'Press Start 2P', cursive;
+
+    font-size:10px;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 5px 0 #6b002c;
+
+    transition:.15s;
+
+}
+
+
+.rsvp-button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+.rsvp-button:active{
+
+    transform:translateY(3px);
+
+    box-shadow:
+
+        0 2px 0 #6b002c;
+
+}
+
+
+
+/* ==========================================
+   SCREEN EFFECTS
+========================================== */
+
+
+.screen::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    repeating-linear-gradient(
+
+        0deg,
+
+        rgba(0,0,0,.08),
+
+        rgba(0,0,0,.08) 2px,
+
+        transparent 2px,
+
+        transparent 4px
+
+    );
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+
+
+@media(max-width:500px){
+
+
+    .gameboy{
+
+        width:95vw;
+
+        padding:18px;
+
+        border-radius:22px 22px 60px 22px;
+
+    }
+
+
+    .screen-shell{
+
+        padding:15px;
+
+    }
+
+
+    .boot-title{
+
+        font-size:16px;
+
+    }
+
+
+    .partysaur{
+
+        width:95px;
+
+        left:20px;
+
+    }
+
+
+    .freyja{
+
+        width:75px;
+
+    }
+
+
+    .textbox{
+
+        font-size:7px;
+
+    }
+
+
+    .invite-card h1{
+
+        font-size:11px;
+
+    }
+
+
+    .invite-info{
+
+        font-size:8px;
+
+    }
+
+
+    .game-button{
+
+        width:52px;
+
+        height:52px;
+
+        font-size:14px;
+
+    }
+
+
+    .dpad{
+
+        transform:scale(.85);
+
+    }
+
+
+}
+/* ==========================================
+   JAVASCRIPT ANIMATION CLASSES
+========================================== */
+
+
+/* Freyja walks onto battlefield */
+
+.freyja.walking{
+
+    animation:walkIn 2.5s forwards ease-out;
+
+}
+
+
+
+/* Party Ball launches */
+
+.partyball.throwing{
+
+    animation:throwBall 1.2s forwards ease-in-out;
+
+}
+
+
+
+/* Explosion appears */
+
+.explosion.active{
+
+    animation:explode .8s forwards;
+
+}
+
+
+
+/* ==========================================
+   SCREEN TRANSITIONS
+========================================== */
+
+
+.fade-out{
+
+    animation:fadeOut .8s forwards;
+
+}
+
+
+.fade-in{
+
+    animation:fadeIn .8s forwards;
+
+}
+
+
+@keyframes fadeOut{
+
+    from{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+    }
+
+}
+
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   GAME BOY BOOT EFFECT
+========================================== */
+
+
+.booting{
+
+    animation:
+
+        screenFlicker .12s infinite;
+
+}
+
+
+@keyframes screenFlicker{
+
+
+    0%{
+
+        opacity:1;
+
+    }
+
+
+    50%{
+
+        opacity:.75;
+
+    }
+
+
+    100%{
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   PIXEL GLOW EFFECTS
+========================================== */
+
+
+.pixel-glow{
+
+    text-shadow:
+
+    0 0 3px #143600,
+
+    0 0 8px #143600;
+
+}
+
+
+
+/* ==========================================
+   PARTY BALL GOLD STAR EFFECT
+========================================== */
+
+
+.partyball{
+
+    filter:
+
+    drop-shadow(0 0 4px gold);
+
+}
+
+
+
+/* ==========================================
+   EVOLUTION SCREEN FLASH
+========================================== */
+
+
+.evolution-flash{
+
+    animation:
+
+    evolutionFlashScreen .3s infinite;
+
+}
+
+
+@keyframes evolutionFlashScreen{
+
+
+    0%{
+
+        background:#8bac0f;
+
+    }
+
+
+    50%{
+
+        background:#f8f8f8;
+
+    }
+
+
+    100%{
+
+        background:#8bac0f;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   INVITATION ENTRY ANIMATION
+========================================== */
+
+
+.invite-card.show{
+
+    animation:
+
+    cardAppear 1s forwards;
+
+}
+
+
+@keyframes cardAppear{
+
+
+    from{
+
+        transform:
+
+        scale(.5);
+
+        opacity:0;
+
+    }
+
+
+    to{
+
+        transform:
+
+        scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   BUTTON PRESS VISUAL
+========================================== */
+
+
+.a-button.active{
+
+    animation:
+
+    buttonPress .2s;
+
+}
+
+
+@keyframes buttonPress{
+
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:translateY(6px);
+
+    }
+
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   LARGE SCREEN SUPPORT
+========================================== */
+
+
+@media(min-width:700px){
+
+
+    .gameboy{
+
+        transform:scale(1.15);
+
+    }
+
+
+}
+
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+
+@media(max-width:360px){
+
+
+    .controls{
+
+        transform:scale(.85);
+
+        margin-top:15px;
+
+    }
+
+
+    .speaker{
+
+        margin-top:10px;
+
+    }
+
+
+    .invite-card{
+
+        padding:10px;
+
+    }
+
+
+    .rsvp-button{
+
+        width:120px;
+
+        font-size:8px;
+
+    }
+
+
+}

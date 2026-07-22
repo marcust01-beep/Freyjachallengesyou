@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freyja's 1st Birthday</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Pixel Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- GAME BOY -->
+
+    <div class="gameboy">
+
+        <!-- POWER -->
+
+        <div class="power-section">
+            <div class="power-led"></div>
+            <span>POWER</span>
+        </div>
+
+        <!-- SCREEN -->
+
+        <div class="screen-shell">
+
+            <div id="screen" class="screen">
+
+                <!-- ========================= -->
+                <!-- BOOT SCREEN -->
+                <!-- ========================= -->
+
+                <section id="bootScene" class="scene active">
+
+                    <div class="boot-content">
+
+                        <h1 class="boot-title">
+                            GAME BOY
+                        </h1>
+
+                        <p class="boot-subtitle">
+                            PARTY EDITION
+                        </p>
+
+                        <div class="loading-box">
+
+                            <div id="loadingBar" class="loading-bar"></div>
+
+                        </div>
+
+                        <p class="loading-text">
+                            Press A to Start
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <!-- ========================= -->
+                <!-- LOADING -->
+                <!-- ========================= -->
+
+                <section id="loadingScene" class="scene">
+
+                    <div class="loading-scene">
+
+                        <p>Loading...</p>
+
+                        <div class="spinner"></div>
+
+                    </div>
+
+                </section>
+
+                <!-- ========================= -->
+                <!-- BATTLE -->
+                <!-- ========================= -->
+
+                <section id="battleScene" class="scene">
+
+                    <img
+                        class="battle-bg"
+                        src="assets/backgrounds/battle.png"
+                        alt="Battle Background"
+                    >
+
+                    <img
+                        id="partySaur"
+                        class="partysaur sprite"
+                        src="assets/sprites/partysaur.png"
+                        alt="PartySaur"
+                    >
+
+                    <img
+                        id="freyjaSprite"
+                        class="freyja sprite"
+                        src="assets/sprites/freyja.png"
+                        alt="Freyja"
+                    >
+
+                    <img
+                        id="partyBall"
+                        class="partyball sprite"
+                        src="assets/sprites/partyball.png"
+                        alt="Party Ball"
+                    >
+
+                    <img
+                        id="explosion"
+                        class="explosion sprite"
+                        src="assets/sprites/explosion.png"
+                        alt="Explosion"
+                    >
+
+                    <div id="battleText" class="textbox">
+
+                        <p>
+                            A wild PartySaur appeared!
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <!-- ========================= -->
+                <!-- EVOLUTION -->
+                <!-- ========================= -->
+
+                <section id="evolutionScene" class="scene">
+
+                    <div class="evolution-wrapper">
+
+                        <h1 class="evolved-text">
+
+                            FREYJA
+                            <br>
+                            EVOLVED!
+
+                        </h1>
+
+                    </div>
+
+                </section>
+
+                <!-- ========================= -->
+                <!-- INVITATION -->
+                <!-- ========================= -->
+
+                <section id="inviteScene" class="scene">
+
+                    <div class="invite-card">
+
+                        <h1>
+
+                            Freyja's
+                            <br>
+                            1st Birthday
+
+                        </h1>
+
+                        <div class="invite-info">
+
+                            <p>📅 6 September</p>
+
+                            <p>🕛 12pm</p>
+
+                            <p>📍 At our home</p>
+
+                        </div>
+
+                        <button
+                            id="rsvpButton"
+                            class="rsvp-button"
+                        >
+                            RSVP
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- CONTROLS -->
+
+        <div class="controls">
+
+            <!-- D PAD -->
+
+            <div class="dpad">
+
+                <div class="dpad-vertical"></div>
+
+                <div class="dpad-horizontal"></div>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button
+                    id="aButton"
+                    class="game-button a-button"
+                >
+                    A
+                </button>
+
+                <button
+                    class="game-button b-button"
+                >
+                    B
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- START SELECT -->
+
+        <div class="middle-buttons">
+
+            <div class="small-button"></div>
+
+            <div class="small-button"></div>
+
+        </div>
+
+        <!-- SPEAKER -->
+
+        <div class="speaker">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
