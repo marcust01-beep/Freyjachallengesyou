@@ -1,254 +1,603 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freyja's 1st Birthday</title>
+/* ==========================================
+   FREYJA POKEMON INVITATION
+   SCRIPT.JS - PART 1
+========================================== */
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Pixel Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+/* ==========================================
+   ELEMENTS
+========================================== */
 
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+const aButton = document.getElementById("aButton");
 
-<div class="page">
+const bootScene = document.getElementById("bootScene");
+const loadingScene = document.getElementById("loadingScene");
+const battleScene = document.getElementById("battleScene");
+const evolutionScene = document.getElementById("evolutionScene");
+const inviteScene = document.getElementById("inviteScene");
 
-    <!-- GAME BOY -->
+const loadingBar = document.getElementById("loadingBar");
 
-    <div class="gameboy">
+const screen = document.getElementById("screen");
 
-        <!-- POWER -->
 
-        <div class="power-section">
-            <div class="power-led"></div>
-            <span>POWER</span>
-        </div>
 
-        <!-- SCREEN -->
+/* ==========================================
+   GAME STATE
+========================================== */
 
-        <div class="screen-shell">
 
-            <div id="screen" class="screen">
+let gameStarted = false;
 
-                <!-- ========================= -->
-                <!-- BOOT SCREEN -->
-                <!-- ========================= -->
+let currentScene = "boot";
 
-                <section id="bootScene" class="scene active">
+let loadingProgress = 0;
 
-                    <div class="boot-content">
 
-                        <h1 class="boot-title">
-                            GAME BOY
-                        </h1>
 
-                        <p class="boot-subtitle">
-                            PARTY EDITION
-                        </p>
+/* ==========================================
+   CHANGE SCENE FUNCTION
+========================================== */
 
-                        <div class="loading-box">
 
-                            <div id="loadingBar" class="loading-bar"></div>
+function changeScene(scene){
 
-                        </div>
+    document.querySelectorAll(".scene")
+        .forEach(section => {
 
-                        <p class="loading-text">
-                            Press A to Start
-                        </p>
+            section.classList.remove("active");
 
-                    </div>
+        });
 
-                </section>
 
-                <!-- ========================= -->
-                <!-- LOADING -->
-                <!-- ========================= -->
+    scene.classList.add("active");
 
-                <section id="loadingScene" class="scene">
 
-                    <div class="loading-scene">
+}
 
-                        <p>Loading...</p>
 
-                        <div class="spinner"></div>
 
-                    </div>
+/* ==========================================
+   A BUTTON PRESS
+========================================== */
 
-                </section>
 
-                <!-- ========================= -->
-                <!-- BATTLE -->
-                <!-- ========================= -->
+function pressA(){
 
-                <section id="battleScene" class="scene">
 
-                    <img
-                        class="battle-bg"
-                        src="assets/backgrounds/battle.png"
-                        alt="Battle Background"
-                    >
+    aButton.classList.add("active");
 
-                    <img
-                        id="partySaur"
-                        class="partysaur sprite"
-                        src="assets/sprites/Partysaur.png"
-                        alt="PartySaur"
-                    >
 
-                    <img
-                        id="freyjaSprite"
-                        class="freyja sprite"
-                        src="assets/sprites/freyja.png"
-                        alt="Freyja"
-                    >
+    setTimeout(()=>{
 
-                    <img
-                        id="partyBall"
-                        class="partyball sprite"
-                        src="assets/sprites/partyball2.png"
-                        alt="Party Ball"
-                    >
+        aButton.classList.remove("active");
 
-                    <!-- explosion removed -->
+    },200);
 
-                    <div id="battleText" class="textbox">
 
-                        <p>
-                            A wild PartySaur appeared!
-                        </p>
 
-                    </div>
+    if(gameStarted === false){
 
-                </section>
+        startGame();
 
-                <!-- ========================= -->
-                <!-- EVOLUTION -->
-                <!-- ========================= -->
+    }
 
-                <section id="evolutionScene" class="scene">
 
-                    <div id="evolutionWrapper" class="evolution-wrapper">
+}
 
-                        <h1 class="evolved-text">
 
-                            FREYJA
-                            <br>
-                            IS EVOLVING
 
-                        </h1>
+/* Keyboard A Button */
 
-                    </div>
+document.addEventListener(
+    "keydown",
+    function(event){
 
-                </section>
 
-                <!-- ========================= -->
-                <!-- INVITATION -->
-                <!-- ========================= -->
+        if(
+            event.key.toLowerCase() === "a"
+        ){
 
-                <section id="inviteScene" class="scene">
+            pressA();
 
-                    <div id="inviteCard" class="invite-card">
+        }
 
-                        <h1>
 
-                            Freyja's
-                            <br>
-                            1st Birthday
+    }
+);
 
-                        </h1>
 
-                        <div class="invite-info">
 
-                            <p>📅 6 September</p>
+/* Mobile A Button */
 
-                            <p>🕛 12pm - 3pm</p>
 
-                            <p>📍 63 Pentland Park</p>
+aButton.addEventListener(
+    "click",
+    function(){
 
-                        </div>
+        pressA();
 
-                        <button
-                            id="rsvpButton"
-                            class="rsvp-button"
-                        >
-                            RSVP
-                        </button>
+    }
+);
 
-                    </div>
 
-                </section>
 
-            </div>
+/* ==========================================
+   START GAME
+========================================== */
 
-        </div>
 
-        <!-- CONTROLS -->
+function startGame(){
 
-        <div class="controls">
 
-            <!-- D PAD -->
+    gameStarted = true;
 
-            <div class="dpad">
 
-                <div class="dpad-vertical"></div>
+    screen.classList.add("booting");
 
-                <div class="dpad-horizontal"></div>
 
-            </div>
+    changeScene(loadingScene);
 
-            <!-- BUTTONS -->
 
-            <div class="buttons">
 
-                <button
-                    id="aButton"
-                    class="game-button a-button"
-                >
-                    A
-                </button>
+    runLoading();
 
-                <button
-                    class="game-button b-button"
-                >
-                    B
-                </button>
 
-            </div>
 
-        </div>
+}
 
-        <!-- START SELECT -->
 
-        <div class="middle-buttons">
 
-            <div class="small-button"></div>
+/* ==========================================
+   LOADING BAR
+========================================== */
 
-            <div class="small-button"></div>
 
-        </div>
+function runLoading(){
 
-        <!-- SPEAKER -->
 
-        <div class="speaker">
+    loadingProgress = 0;
 
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
 
-        </div>
 
-    </div>
+    const loadingInterval = setInterval(()=>{
 
-</div>
 
-<script src="script.js?v=20260722-2" defer></script>
-</body>
-</html>
+        loadingProgress += 5;
+
+
+        loadingBar.style.width =
+            loadingProgress + "%";
+
+
+
+        if(loadingProgress >= 100){
+
+
+            clearInterval(loadingInterval);
+
+
+
+            setTimeout(()=>{
+
+
+                startBattle();
+
+
+            },800);
+
+
+
+        }
+
+
+    },100);
+
+
+
+}
+
+
+
+/* ==========================================
+   START BATTLE
+========================================== */
+
+
+function startBattle(){
+
+
+    screen.classList.remove("booting");
+
+
+    changeScene(battleScene);
+
+
+
+}
+/* ==========================================
+   SCRIPT.JS - PART 2
+   BATTLE SEQUENCE
+========================================== */
+
+
+/* ==========================================
+   SPRITE ELEMENTS
+========================================== */
+
+
+const partySaur = document.getElementById("partySaur");
+
+const freyjaSprite = document.getElementById("freyjaSprite");
+
+const partyBall = document.getElementById("partyBall");
+
+const explosion = document.getElementById("explosion");
+
+const battleText = document.getElementById("battleText");
+
+
+
+/* ==========================================
+   BATTLE START SEQUENCE
+========================================== */
+
+
+function startBattle(){
+
+
+    screen.classList.remove("booting");
+
+
+    changeScene(battleScene);
+
+
+
+    setTimeout(()=>{
+
+
+        battleMessage(
+            "A wild PartySaur appeared!"
+        );
+
+
+    },500);
+
+
+
+    setTimeout(()=>{
+
+
+        freyjaArrives();
+
+
+    },2500);
+
+
+
+}
+
+
+
+/* ==========================================
+   FREYJA WALKS IN
+========================================== */
+
+
+function freyjaArrives(){
+
+
+    freyjaSprite.classList.add(
+        "walking"
+    );
+
+
+
+    setTimeout(()=>{
+
+
+        battleMessage(
+            "Freyja joined the battle!"
+        );
+
+
+    },2500);
+
+
+
+    setTimeout(()=>{
+
+
+        throwPartyBall();
+
+
+    },5000);
+
+
+
+}
+
+
+
+/* ==========================================
+   TEXT BOX UPDATE
+========================================== */
+
+
+function battleMessage(message){
+
+
+    battleText.innerHTML = `
+
+        <p>
+            ${message}
+        </p>
+
+    `;
+
+
+}
+
+
+
+/* ==========================================
+   PARTY BALL THROW
+========================================== */
+
+
+function throwPartyBall(){
+
+
+    battleMessage(
+        "Freyja used PARTY BALL!"
+    );
+
+
+
+    partyBall.style.opacity = "1";
+
+
+
+    partyBall.classList.add(
+        "throwing"
+    );
+
+
+
+    setTimeout(()=>{
+
+
+        createExplosion();
+
+
+
+    },1200);
+
+
+
+}
+
+
+
+/* ==========================================
+   EXPLOSION
+========================================== */
+
+
+function createExplosion(){
+
+
+    partyBall.style.opacity = "0";
+
+
+
+    explosion.classList.add(
+        "active"
+    );
+
+
+
+    battleMessage(
+        "It's super effective!"
+    );
+
+
+
+    setTimeout(()=>{
+
+
+        evolutionStart();
+
+
+
+    },1500);
+
+
+
+}
+
+
+
+/* ==========================================
+   EVOLUTION SEQUENCE
+========================================== */
+
+
+function evolutionStart(){
+
+
+    changeScene(
+        evolutionScene
+    );
+
+
+
+    screen.classList.add(
+        "evolution-flash"
+    );
+
+
+
+    setTimeout(()=>{
+
+
+        screen.classList.remove(
+            "evolution-flash"
+        );
+
+
+
+        showInvitation();
+
+
+
+    },3500);
+
+
+
+}
+/* ==========================================
+   SCRIPT.JS - PART 3
+   INVITATION REVEAL + RSVP
+========================================== */
+
+
+/* ==========================================
+   SHOW INVITATION
+========================================== */
+
+
+function showInvitation(){
+
+
+    changeScene(
+        inviteScene
+    );
+
+
+
+    const card = document.querySelector(
+        ".invite-card"
+    );
+
+
+
+    card.classList.add(
+        "show"
+    );
+
+
+
+}
+
+
+
+/* ==========================================
+   RSVP BUTTON
+========================================== */
+
+
+const rsvpButton = document.getElementById(
+    "rsvpButton"
+);
+
+
+
+rsvpButton.addEventListener(
+    "click",
+    function(){
+
+
+        /*
+          Replace the link below with
+          your Google Forms RSVP link
+        */
+
+
+        const googleFormLink =
+        https://docs.google.com/forms/d/1LSUz_iss5VpoBAu3pf22RcVnwogjFcrFYt8ZX3VBAlc/edit?eops=0;
+
+
+
+        window.open(
+            googleFormLink,
+            "_blank"
+        );
+
+
+
+    }
+);
+
+
+
+/* ==========================================
+   SCREEN START PROTECTION
+========================================== */
+
+
+window.addEventListener(
+    "load",
+    function(){
+
+
+        changeScene(
+            bootScene
+        );
+
+
+    }
+);
+document.addEventListener("DOMContentLoaded", () => {
+
+    const button = document.getElementById("aButton");
+
+    button.addEventListener("click", () => {
+
+        console.log("A button pressed");
+
+        pressA();
+
+    });
+
+
+    document.addEventListener("keydown", (event) => {
+
+        if(event.key.toLowerCase() === "a"){
+
+            console.log("Keyboard A pressed");
+
+            pressA();
+
+        }
+
+    });
+
+});
+
+
+
+/* ==========================================
+   OPTIONAL RETRO SOUND HOOK
+========================================== */
+
+
+/*
+
+You can add Game Boy sounds later:
+
+function playSound(file){
+
+    const sound =
+    new Audio(file);
+
+    sound.play();
+
+}
+
+Example:
+
+playSound("assets/audio/start.wav");
+
+*/
