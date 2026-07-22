@@ -443,14 +443,14 @@ body{
 }
 
 .partysaur{
-    width:120px;
+    width:130px;
     left:35px;
     bottom:70px;
     animation:bounce 1s infinite;
 }
 
 .freyja{
-    width:92px;
+    width:100px;
     right:-140px;
     bottom:72px;
 }
@@ -460,6 +460,7 @@ body{
     right:65px;
     bottom:155px;
     opacity:0;
+    mix-blend-mode:screen;
 }
 
 .explosion{
@@ -828,18 +829,13 @@ body{
 
 
     .partysaur{
-
-        width:95px;
-
+        width:103px;
         left:20px;
-
     }
 
 
     .freyja{
-
-        width:75px;
-
+        width:82px;
     }
 
 
